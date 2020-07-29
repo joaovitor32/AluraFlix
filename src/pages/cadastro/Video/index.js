@@ -8,7 +8,7 @@ const CadastroVideo = () => {
         <PageDefault>
             <h1>Página de cadastro de vídeo</h1>
             <Link to="/cadastro/categoria">
-                Cadastrar Video
+                Cadastrar Categoria
             </Link>
         </PageDefault>
     )
