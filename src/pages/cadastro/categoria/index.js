@@ -4,31 +4,18 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 
+import useForm from '../../../components/hooks/useForm';
 
 const CadastroCategoria = () => {
   const valoresIniciais = {
-    nome: '',
+    titulo: '',
     descricao: '',
     cor: '#000',
   };
 
+  const { values, handleChange, clearForm } = useForm(valoresIniciais);
+
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(valoresIniciais);
-
-  const setValue = (chave, valor) => {
-    setValues({
-      ...values,
-      [chave]: valor,
-    });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValue(
-      name,
-      value,
-    );
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,21 +25,15 @@ const CadastroCategoria = () => {
         values,
       ],
     );
-    setValues(valoresIniciais);
+    clearForm(valoresIniciais);
   };
 
   useEffect(() => {
-    const URL = 'https://dev-soutinho-flix.herokuapp.com/categorias';
-    fetch(URL).then(async (response) => {
-      const res = await response.json();
-      setCategorias([
-        ...res,
-      ]);
-    });
+
   }, []);
 
   return (
-    <PageDefault>
+    <PageDefault padding={0}>
       <h1>
         Página de cadastro de categoria:
         {values.nome}
@@ -61,9 +42,9 @@ const CadastroCategoria = () => {
 
         <FormField
           label="Nome da categoria "
-          value={values.nome}
+          value={values.titulo}
           type="text"
-          name="nome"
+          name="titulo"
           onChange={handleChange}
         />
 
@@ -89,15 +70,15 @@ const CadastroCategoria = () => {
       <ul>
         {
           categorias.length === 0 && (
-          <div>
-            Loading...
-          </div>
+            <div>
+              Loading...
+            </div>
           )
         }
         {categorias.map((categoria, indice) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li key={`${categoria.nome}${indice}`}>
-            {categoria.nome}
+          <li key={`${categoria.titulo}${indice}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>
