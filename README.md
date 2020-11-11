@@ -3,6 +3,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `git clone https://github.com/joaovitor32/AluraFlix`
+
+### `cd ./AluraFlix`
+
 ### `npm install`
 
 ### `npm run dev`
